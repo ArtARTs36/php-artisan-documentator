@@ -1,0 +1,38 @@
+{
+    "name": "artarts36/artisan-documentator",
+    "description": "Laravel Artisan Documentator",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "temicska99@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable":true,
+    "require": {
+        "illuminate/config": "^8.0",
+        "illuminate/console": "^8.0",
+        "illuminate/filesystem": "^8.69",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ArtARTs36\\ArtisanDocumentator\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": [
+            "./vendor/bin/phpcs --standard=PSR2 src/"
+        ]
+    }
+}
