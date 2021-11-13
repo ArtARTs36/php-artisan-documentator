@@ -13,7 +13,8 @@ return [
         ],
     ],
     'namespaces' => [
-        //'app:' => 'App Commands',
-        //'make:' => 'Laravel make Commands',
+        // 'namespace:' => 'title,
+        // 'app:' => 'App Commands',
+        // 'make:' => 'Laravel make Commands',
     ],
 ];
