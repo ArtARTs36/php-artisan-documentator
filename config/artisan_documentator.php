@@ -17,4 +17,9 @@ return [
         // 'app:' => 'App Commands',
         // 'make:' => 'Laravel make Commands',
     ],
+    'replaces' => [
+        'CommandClass' => [
+            'description' => '',
+        ],
+    ],
 ];

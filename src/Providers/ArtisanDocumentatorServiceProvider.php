@@ -5,6 +5,7 @@ namespace ArtARTs36\ArtisanDocumentator\Providers;
 use ArtARTs36\ArtisanDocumentator\Contexts\DocGenerateContext;
 use ArtARTs36\ArtisanDocumentator\Contracts\CommandsFetcher;
 use ArtARTs36\ArtisanDocumentator\Documentators\ConfigDocumentatorFactory;
+use ArtARTs36\ArtisanDocumentator\Documentators\Replaces;
 use ArtARTs36\ArtisanDocumentator\Documentators\SignatureBuilder;
 use ArtARTs36\ArtisanDocumentator\Documentators\TemplateDocumentator;
 use ArtARTs36\ArtisanDocumentator\Fetchers\AppCommandsFetcher;
@@ -40,6 +41,10 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
             
             return new ConfigDocumentatorFactory($container, $map);
         });
+
+        $this->app->bind(Replaces::class, static function (Container $container) {
+            return new Replaces($container['config']->get('artisan_documentator.replaces'));
+        });
     }
 
     private function registerDocGenerateContext(): void
@@ -55,6 +60,7 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
             return new TemplateDocumentator(
                 $container->make(Factory::class),
                 $container->make(SignatureBuilder::class),
+                $container->make(Replaces::class),
                 $container['config']->get('artisan_documentator.documentators.drivers.template.view')
             );
         });

@@ -11,6 +11,7 @@ class TemplateDocumentator implements ArtisanDocumentator
     public function __construct(
         private Factory $viewer,
         private SignatureBuilder $signature,
+        private Replaces $replaces,
         private string $template,
     ) {
         //
@@ -25,9 +26,11 @@ class TemplateDocumentator implements ArtisanDocumentator
             
             /** @var Command $command */
             foreach ($cmd as $command) {
+                $replace = $this->replaces->get($command::class);
+
                 $prepared[$namespace]['commands'][] = [
                     'name' => $command->getName(),
-                    'description' => $command->getDescription(),
+                    'description' => $replace['description'] ?? $command->getDescription(),
                     'signature' => $this->signature->build($command),
                 ];
             }
