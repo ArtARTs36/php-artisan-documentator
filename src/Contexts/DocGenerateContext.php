@@ -13,6 +13,9 @@ class DocGenerateContext
         //
     }
 
+    /**
+     * @return array<string>
+     */
     public function getNamespaces(): array
     {
         return array_keys($this->namespacesGroups);
