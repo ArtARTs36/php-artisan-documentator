@@ -13,7 +13,7 @@
     "minimum-stability": "dev",
     "prefer-stable":true,
     "require": {
-        "artarts36/git-handler": "^1.1.4",
+        "artarts36/git-handler": "^1.1.5",
         "illuminate/config": "^8.0",
         "illuminate/console": "^8.0",
         "illuminate/filesystem": "^8.69",
