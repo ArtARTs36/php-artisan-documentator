@@ -9,6 +9,8 @@ use ArtARTs36\ArtisanDocumentator\Documentators\SignatureBuilder;
 use ArtARTs36\ArtisanDocumentator\Documentators\TemplateDocumentator;
 use ArtARTs36\ArtisanDocumentator\Fetchers\AppCommandsFetcher;
 use ArtARTs36\ArtisanDocumentator\Ports\Console\GenerateDocCommand;
+use ArtARTs36\ArtisanDocumentator\Support\Repo;
+use ArtARTs36\GitHandler\Factory\LocalGitFactory;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
@@ -39,6 +41,17 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
             }
             
             return new ConfigDocumentatorFactory($container, $map);
+        });
+
+        $this->app->bind(Repo::class, static function (Container $container) {
+            $config = $container->get('config')->get('artisan_documentator');
+
+            return new Repo(
+                (new LocalGitFactory())->factory($config['dir']),
+                $config['remote']['login'],
+                $config['remote']['token'],
+                $config['commit']['message'],
+            );
         });
     }
 
