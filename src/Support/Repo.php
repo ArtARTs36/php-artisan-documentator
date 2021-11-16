@@ -18,15 +18,15 @@ class Repo
         //
     }
 
-    public function commitAndPush(string $path): void
+    public function commitAndPush(string $path, string $branch): void
     {
         $this->git->index()->add($path);
         $this->git->commits()->commit($this->message);
 
-        $this->git->pushes()->send(function (MakingPush $push) {
+        $this->git->pushes()->send(function (MakingPush $push) use ($branch) {
             $push->onRemote(function (UriInterface $uri) {
                 return $uri->withUserInfo($this->login, $this->token);
-            })->onSetUpStream()->onCurrentBranchHead();
+            })->onSetUpStream()->onBranchHead($branch);
         });
     }
 }
