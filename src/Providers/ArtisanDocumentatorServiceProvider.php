@@ -44,7 +44,7 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(Repo::class, static function (Container $container) {
-            $config = $container->get('config')->get('artisan_documentator');
+            $config = $container->get('config')->get('artisan_documentator.git');
 
             return new Repo(
                 (new LocalGitFactory())->factory($config['dir']),

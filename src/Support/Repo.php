@@ -25,7 +25,7 @@ class Repo
 
         $this->git->pushes()->send(function (MakingPush $push) {
             $push->onRemote(function (UriInterface $uri) {
-                $uri->withUserInfo($this->login, $this->token);
+                return $uri->withUserInfo($this->login, $this->token);
             });
         });
     }
