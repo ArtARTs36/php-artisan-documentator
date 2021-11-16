@@ -17,7 +17,6 @@ final class GenerateDocCommandTest extends TestCase
             ->artisan(GenerateDocCommand::class, [
                 'path' => 'commands.md',
             ])
-            ->assertExitCode(Command::SUCCESS)
             ->assertSuccessful()
             ->run();
     }
