@@ -21,7 +21,7 @@ return [
         'dir' => base_path(),
         'remote' => [
             'login' => 'my-name',
-            'token' => 'my-token',
+            'token' => env('ARTISAN_DOCUMENTATOR_GIT_REMOTE_TOKEN'),
         ],
         'commit' => [
             'message' => '[DOCS] auto-build console documentation',
