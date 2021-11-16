@@ -5,7 +5,7 @@ namespace ArtARTs36\ArtisanDocumentator\Tests\Unit;
 use ArtARTs36\ArtisanDocumentator\Fetchers\AppCommandsFetcher;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\Kernel;
-use PHPUnit\Framework\TestCase;
+use ArtARTs36\ArtisanDocumentator\Tests\TestCase;
 
 final class AppCommandsFetcherTest extends TestCase
 {

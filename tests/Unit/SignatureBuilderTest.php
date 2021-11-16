@@ -5,7 +5,7 @@ namespace ArtARTs36\ArtisanDocumentator\Tests\Unit;
 use ArtARTs36\ArtisanDocumentator\Documentators\SignatureBuilder;
 use Illuminate\Console\Command as LaravelCommand;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
-use PHPUnit\Framework\TestCase;
+use ArtARTs36\ArtisanDocumentator\Tests\TestCase;
 use Symfony\Component\Console\Input\InputOption;
 
 final class SignatureBuilderTest extends TestCase
