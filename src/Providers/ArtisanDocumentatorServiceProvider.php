@@ -9,8 +9,10 @@ use ArtARTs36\ArtisanDocumentator\Documentators\SignatureBuilder;
 use ArtARTs36\ArtisanDocumentator\Documentators\TemplateDocumentator;
 use ArtARTs36\ArtisanDocumentator\Fetchers\AppCommandsFetcher;
 use ArtARTs36\ArtisanDocumentator\Ports\Console\GenerateDocCommand;
-use ArtARTs36\ArtisanDocumentator\Support\Repo;
-use ArtARTs36\GitHandler\Factory\LocalGitFactory;
+use ArtARTs36\ArtisanDocumentator\Support\Ci;
+use ArtARTs36\CiGitSender\Contracts\Sender;
+use ArtARTs36\CiGitSender\Remote\Credentials;
+use ArtARTs36\CiGitSender\Sender\Factory\SenderFactory;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
@@ -43,16 +45,20 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
             return new ConfigDocumentatorFactory($container, $map);
         });
 
-        $this->app->bind(Repo::class, static function (Container $container) {
-            $config = $container->get('config')->get('artisan_documentator.git');
+        $this->registerCi();
+    }
 
-            return new Repo(
-                (new LocalGitFactory())->factory($config['dir']),
-                $config['remote']['login'],
-                $config['remote']['token'],
-                $config['commit']['message'],
-            );
-        });
+    protected function registerCi(): void
+    {
+        $git = $this->app->get('config')->get('artisan_documentator.git');
+
+        $this
+            ->app
+            ->when(Ci::class)
+            ->needs(Sender::class)
+            ->give(static function () use ($git) {
+                return SenderFactory::local()->create($git['dir'], Credentials::fromArray($git['remote']));
+            });
     }
 
     private function registerDocGenerateContext(): void

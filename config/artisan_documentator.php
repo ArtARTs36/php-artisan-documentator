@@ -24,7 +24,7 @@ return [
             'token' => env('ARTISAN_DOCUMENTATOR_GIT_REMOTE_TOKEN'),
         ],
         'commit' => [
-            'message' => '[DOCS] auto-build console documentation',
+            'message' => '[DOCS] auto-build console documentation in ${FILE}',
         ],
     ],
 ];
