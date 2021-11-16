@@ -12,7 +12,7 @@ use ArtARTs36\ArtisanDocumentator\Ports\Console\GenerateDocCommand;
 use ArtARTs36\ArtisanDocumentator\Support\Ci;
 use ArtARTs36\CiGitSender\Contracts\Sender;
 use ArtARTs36\CiGitSender\Remote\Credentials;
-use ArtARTs36\CiGitSender\Sender\Factory\SenderFactory;
+use ArtARTs36\CiGitSender\Factory\SenderFactory;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
