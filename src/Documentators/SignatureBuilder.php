@@ -3,6 +3,7 @@
 namespace ArtARTs36\ArtisanDocumentator\Documentators;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 class SignatureBuilder
 {
@@ -14,20 +15,25 @@ class SignatureBuilder
             $signature .= ' {' . $argument->getName() . '}';
         }
 
-        foreach ($command->getDefinition()->getOptions() as $option) {
-            $signature .= ' {--' . $option->getName();
+        $signature .= $this->buildOptions($command);
+
+        return $signature;
+    }
+
+    protected function buildOptions(Command $command): string
+    {
+        return implode("\n", array_map(function (InputOption $option) {
+            $signature = ' {--' . $option->getName();
 
             if ($option->acceptValue()) {
-                $signature .= ' =';
+                $signature .= '=';
             }
 
             if (! empty($option->getDescription())) {
                 $signature .= ': ' . $option->getDescription();
             }
 
-            $signature .= "}\n";
-        }
-
-        return $signature;
+            return $signature . '}';
+        }, $command->getDefinition()->getOptions()));
     }
 }
