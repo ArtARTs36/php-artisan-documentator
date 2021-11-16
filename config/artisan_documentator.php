@@ -17,4 +17,14 @@ return [
         // 'app:' => 'App Commands',
         // 'make:' => 'Laravel make Commands',
     ],
+    'git' => [
+        'dir' => base_path(),
+        'remote' => [
+            'login' => 'my-name',
+            'token' => env('ARTISAN_DOCUMENTATOR_GIT_REMOTE_TOKEN'),
+        ],
+        'commit' => [
+            'message' => '[DOCS] auto-build console documentation',
+        ],
+    ],
 ];

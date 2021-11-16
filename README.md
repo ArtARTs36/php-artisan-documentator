@@ -24,3 +24,23 @@ You can set command's namespaces in the file: `config/artisan_documentator.php` 
         // 'make:' => 'Laravel make Commands',
     ],
 ```
+
+## Using in CI
+
+In order to use generation in CI you need to specify your login and token in the file in the file: `config/artisan_documentator.php` in section 'git.remotes':
+```php
+    'git' => [
+        'dir' => base_path(),
+        'remote' => [
+            'login' => 'my-name',
+            'token' => env('ARTISAN_DOCUMENTATOR_GIT_REMOTE_TOKEN'),
+        ],
+        'commit' => [
+            'message' => '[DOCS] auto-build console documentation',
+        ],
+    ],
+```
+
+Command call in your CI conf file:
+
+`php artisan command:doc docs/command.md --ci`

@@ -17,13 +17,20 @@ class DocGenerator
     ) {
     }
 
-    public function generate(string $documentator, string $path): void
+    /**
+     * @return bool - is file modified
+     */
+    public function generate(string $documentator, string $path): bool
     {
         $content = $this
             ->documentators
             ->create($documentator)
             ->generate($this->commands->fetch($this->context->getNamespaces()), $this->context->namespacesGroups);
 
+        $prevHash = $this->files->exists($path) ? $this->files->hash($path) : '';
+
         $this->files->put($path, $content);
+
+        return $prevHash !== $this->files->hash($path);
     }
 }
