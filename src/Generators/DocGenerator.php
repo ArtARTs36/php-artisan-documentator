@@ -18,6 +18,7 @@ class DocGenerator
     }
 
     /**
+     * Generate and save documentation to path
      * @return bool - is file modified
      */
     public function generate(string $documentator, string $path): bool

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 interface ArtisanDocumentator
 {
     /**
+     * Generate documentation content
      * @param array<string, array<Command>> $commands
      * @param array<string, string> $namespaceGroups
      */

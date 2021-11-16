@@ -4,8 +4,6 @@ namespace ArtARTs36\ArtisanDocumentator\Fetchers;
 
 use ArtARTs36\ArtisanDocumentator\Contracts\CommandsFetcher;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Support\Arr;
-use Illuminate\Console\Application;
 use Symfony\Component\Console\Command\Command;
 
 class AppCommandsFetcher implements CommandsFetcher
