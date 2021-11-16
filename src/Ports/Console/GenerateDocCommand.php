@@ -20,8 +20,16 @@ class GenerateDocCommand extends Command
             $path = $this->argument('path')
         );
 
-        if ($this->option('ci') && $modified) {
-            $ci->sendDoc($path);
+        if ($modified) {
+            $this->info('Documentation updated');
+
+            if ($this->option('ci')) {
+                $ci->sendDoc($path);
+
+                $this->info('Documentation was send to remote git');
+            }
+        } else {
+            $this->info('Documentation already is actually');
         }
     }
 }
