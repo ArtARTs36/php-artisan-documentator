@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 interface CommandsFetcher
 {
     /**
+     * @param array<string> $namespaces
      * @return array<string, array<Command>>
      */
     public function fetch(array $namespaces = []): array;
