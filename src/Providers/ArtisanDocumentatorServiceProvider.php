@@ -10,6 +10,7 @@ use ArtARTs36\ArtisanDocumentator\Documentators\TemplateDocumentator;
 use ArtARTs36\ArtisanDocumentator\Fetchers\AppCommandsFetcher;
 use ArtARTs36\ArtisanDocumentator\Ports\Console\GenerateDocCommand;
 use ArtARTs36\ArtisanDocumentator\Support\Ci;
+use ArtARTs36\CiGitSender\Commit\Message;
 use ArtARTs36\CiGitSender\Contracts\Sender;
 use ArtARTs36\CiGitSender\Remote\Credentials;
 use ArtARTs36\CiGitSender\Factory\SenderFactory;
@@ -58,6 +59,14 @@ class ArtisanDocumentatorServiceProvider extends ServiceProvider
             ->needs(Sender::class)
             ->give(static function () use ($git) {
                 return SenderFactory::local()->create($git['dir'], Credentials::fromArray($git['remote']));
+            });
+
+        $this
+            ->app
+            ->when(Ci::class)
+            ->needs(Message::class)
+            ->give(static function () use ($git) {
+                return new Message($git['commit']['message']);
             });
     }
 
