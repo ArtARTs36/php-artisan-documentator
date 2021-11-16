@@ -10,4 +10,4 @@
 .phpunit.result.cache   export-ignore
 phpunit.xml             export-ignore
 .github                 export-ignore
-README.MD               export-ignore
+README.md               export-ignore
