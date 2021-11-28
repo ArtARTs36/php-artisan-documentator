@@ -44,3 +44,9 @@ In order to use generation in CI you need to specify your login and token in the
 Command call in your CI conf file:
 
 `php artisan command:doc docs/command.md --ci`
+
+### Command Description
+
+Must fill property `description` in console commands for full documentation.
+
+Use the [PHP CS Fixer rule](https://github.com/ArtARTs36/php-cs-fixer-good-fixers) `PhpCsFixerGoodFixers/laravel_command_no_empty_description` to prevent undescribed commands from entering your repository.  
