@@ -47,5 +47,12 @@
             "echo 'Run tests'",
             "XDEBUG_MODE=coverage ./vendor/bin/phpunit -v --coverage-text --configuration phpunit.xml --coverage-clover=tests/reports/logs/clover.xml --coverage-xml=tests/reports/logs/coverage-xml --log-junit=tests/reports/logs/junit.xml"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ArtARTs36\\ArtisanDocumentator\\Providers\\ArtisanDocumentatorServiceProvider"
+            ]
+        }
     }
 }
